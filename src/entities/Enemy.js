@@ -27,6 +27,8 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.platformCollidersLayer = null;
 		this.rayGraphics = this.scene.add.graphics({ lineStyle: { width: 2, color: 0xaa00aa } });
 
+		this.damage = 20;
+
 		this.body.setGravityY(this.gravity);
 		this.setSize(20, 45);
 		this.setOffset(7, 20);
