@@ -178,7 +178,7 @@
         {
          "columns":64,
          "firstgid":1,
-         "image":"..\/..\/phaser-ts-platformer\/src\/assets\/main_lev_build_1.png",
+         "image":"main_lev_build_1.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -228,7 +228,7 @@
         {
          "columns":64,
          "firstgid":4097,
-         "image":"..\/..\/phaser-ts-platformer\/src\/assets\/main_lev_build_2.png",
+         "image":"main_lev_build_2.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
