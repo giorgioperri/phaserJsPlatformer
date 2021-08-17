@@ -66,12 +66,12 @@ class Play extends Phaser.Scene {
 	createLayers(map) {
 		const tileset1 = map.getTileset('main_lev_build_1');
 		const tileset2 = map.getTileset('main_lev_build_2');
-		const platformsColliders = map.createStaticLayer('PlatformColliders', [tileset1, tileset2]);
-		const background = map.createStaticLayer('Background', [tileset1, tileset2]);
-		const backgroundDetails = map.createStaticLayer('BackgroundDetails', [tileset1, tileset2]);
-		const platformsDown = map.createStaticLayer('PlatformsDown', [tileset1, tileset2]);
-		const platforms = map.createStaticLayer('Platforms', [tileset1, tileset2]);
-		const secondaryPlatforms = map.createStaticLayer('SecondaryPlatforms', [tileset1, tileset2]);
+		const platformsColliders = map.createLayer('PlatformColliders', [tileset1, tileset2]);
+		const background = map.createLayer('Background', [tileset1, tileset2]);
+		const backgroundDetails = map.createLayer('BackgroundDetails', [tileset1, tileset2]);
+		const platformsDown = map.createLayer('PlatformsDown', [tileset1, tileset2]);
+		const platforms = map.createLayer('Platforms', [tileset1, tileset2]);
+		const secondaryPlatforms = map.createLayer('SecondaryPlatforms', [tileset1, tileset2]);
 		const playerZones = map.getObjectLayer('PlayerZones');
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
 
@@ -123,7 +123,8 @@ class Play extends Phaser.Scene {
 		enemies
 			.addCollider(colliders.platformsColliders)
 			.addCollider(colliders.player, this.onPlayerCollision)
-			.addCollider(colliders.player.projectiles, this.onWeaponHit);
+			.addCollider(colliders.player.projectiles, this.onWeaponHit)
+			.addOverlap(colliders.player.meleeWeapon, this.onWeaponHit);
 	}
 
 	createPlayerColliders(player, { colliders }) {

@@ -1,4 +1,6 @@
 import 'phaser';
+import EffectManager from '../effects/EffectManager';
+import { getTimestamp } from '../utils/functions';
 
 export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, weaponName) {
@@ -7,11 +9,14 @@ export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 		scene.add.existing(this);
 		scene.physics.add.existing(this);
 
-		this.damage = 20;
-		this.attackSpeed = 1000;
+		this.damage = 15;
+		this.attackSpeed = 400;
+
 		this.weaponName = weaponName;
 		this.weaponAnim = weaponName + 'Swing';
 		this.wielder = null;
+
+		this.effectManager = new EffectManager(this.scene);
 
 		this.setOrigin(0.5, 1);
 		this.setDepth(10);
@@ -21,6 +26,7 @@ export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 		this.on('animationcomplete', (animation) => {
 			if (animation.key === this.weaponAnim) {
 				this.activateWeapon(false);
+				this.body.checkCollision.none = false;
 				this.body.reset(0, 0);
 			}
 		});
@@ -45,6 +51,12 @@ export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 		this.wielder = wielder;
 		this.activateWeapon(true);
 		this.anims.play(this.weaponAnim, true);
+	}
+
+	deliversHit(target) {
+		const impactPosition = { x: this.x, y: this.getRightCenter().y };
+		this.effectManager.playEffectOn('hitEffect', target, impactPosition);
+		this.body.checkCollision.none = true;
 	}
 
 	activateWeapon(isActive) {
