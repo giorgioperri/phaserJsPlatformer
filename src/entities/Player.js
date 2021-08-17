@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import initAnimations from './anims/playerAnims';
 import HealthBar from '../hud/HealthBar';
 import Projectiles from '../attacks/Projectiles';
+import MeleeWeapon from '../attacks/MeleeWeapon';
 import anims from '../mixins/anims';
 import collidable from '../mixins/collidable';
 
@@ -32,6 +33,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 
 		this.projectiles = new Projectiles(this.scene);
+		this.meleeWeapon = new MeleeWeapon(this.scene, 0, 0, 'swordDefault');
 
 		this.lastDirection = Phaser.Physics.Arcade.FACING_RIGHT;
 
@@ -54,6 +56,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.scene.input.keyboard.on('keydown-Q', () => {
 			this.projectiles.fireProjectile(this);
+			this.play('throw', true);
+		});
+
+		this.scene.input.keyboard.on('keydown-E', () => {
+			this.meleeWeapon.swing(this);
 			this.play('throw', true);
 		});
 	}

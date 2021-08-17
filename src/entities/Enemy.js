@@ -94,8 +94,6 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		source.deliversHit(this);
 		this.health -= source.damage;
 
-		console.log(this.health);
-
 		if (this.health <= 0) {
 			this.die();
 		}
