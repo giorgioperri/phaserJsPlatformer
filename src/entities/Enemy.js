@@ -97,6 +97,8 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		}
 	}
 
+	deliversHit() {}
+
 	die() {
 		this.setTint(0xff0000);
 		this.setVelocity(0, -200);
