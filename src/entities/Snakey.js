@@ -25,6 +25,10 @@ class Snakey extends Enemy {
 	update(time, delta) {
 		super.update(time, delta);
 
+		if (!this.active) {
+			return;
+		}
+
 		if (this.active) {
 			if (this.body.velocity.x >= 0) {
 				this.lastDirection = Phaser.Physics.Arcade.FACING_RIGHT;

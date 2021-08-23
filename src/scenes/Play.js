@@ -4,6 +4,7 @@ import Enemies from '../groups/Enemies';
 import initAnims from '../anims';
 import Collectibles from '../groups/Collectibles';
 import Hud from '../hud';
+import EventEmitter from '../events/Emitter';
 
 class Play extends Phaser.Scene {
 	constructor(config) {
@@ -11,7 +12,7 @@ class Play extends Phaser.Scene {
 		this.config = config;
 	}
 
-	create() {
+	create({ gameStatus }) {
 		this.score = 0;
 		this.hud = new Hud(this, 0, 0).setDepth(9);
 
@@ -24,6 +25,8 @@ class Play extends Phaser.Scene {
 		const player = this.createPlayer(playerZones.start);
 		const enemies = this.createEnemies(layers.enemySpawns, layers.platformsColliders);
 		const collectibles = this.createCollectables(layers.collectibles);
+
+		this.createBG(map);
 
 		this.createForegroundDressing(map);
 
@@ -45,20 +48,29 @@ class Play extends Phaser.Scene {
 
 		this.createEndOfLevel(playerZones.end, player);
 		this.setupFollowupCameraOn(player);
+
+		if (gameStatus === 'PLAYER_LOST') {
+			return;
+		}
+
+		this.createGameEvents();
 	}
 
 	createMap() {
-		const map = this.make.tilemap({ key: 'map' });
+		const map = this.make.tilemap({ key: `level-${this.getCurrentLevel()}` });
 		map.addTilesetImage('main_lev_build_1', 'tiles-1');
 		map.addTilesetImage('main_lev_build_2', 'tiles-2');
+		map.addTilesetImage('bg_spikes_tileset', 'tiles-bg');
 		return map;
 	}
 
 	createLayers(map) {
 		const tileset1 = map.getTileset('main_lev_build_1');
 		const tileset2 = map.getTileset('main_lev_build_2');
+		const tilesetBG = map.getTileset('bg_spikes_tileset');
+		map.createLayer('BGcolor', tilesetBG);
 		const platformsColliders = map.createLayer('PlatformColliders', [tileset1, tileset2]);
-		const background = map.createLayer('Background', [tileset1, tileset2]);
+		//const background = map.createLayer('Background', [tileset1, tileset2]);
 		const backgroundDetails = map.createLayer('BackgroundDetails', [tileset1, tileset2]);
 		const platformsDown = map.createLayer('PlatformsDown', [tileset1, tileset2]);
 		const platforms = map.createLayer('Platforms', [tileset1, tileset2]);
@@ -73,7 +85,7 @@ class Play extends Phaser.Scene {
 
 		return {
 			platformsColliders,
-			background,
+			//background,
 			backgroundDetails,
 			platforms,
 			playerZones,
@@ -83,6 +95,28 @@ class Play extends Phaser.Scene {
 			collectibles,
 			traps,
 		};
+	}
+
+	createBG(map) {
+		const bgObject = map.getObjectLayer('DistanceBg').objects[0];
+		this.spikesImage = this.add
+			.tileSprite(bgObject.x, bgObject.y, this.config.width, bgObject.height, 'bg-spikes-dark')
+			.setDepth(-10)
+			.setOrigin(0, 1)
+			.setScrollFactor(0, 1);
+
+		this.skyImage = this.add
+			.tileSprite(0, 0, this.config.width, 180, 'sky')
+			.setDepth(-15)
+			.setOrigin(0)
+			.setScale(1.1)
+			.setScrollFactor(0, 1);
+	}
+
+	createGameEvents() {
+		EventEmitter.on('PLAYER_LOST', () => {
+			this.scene.restart({ gameStatus: 'PLAYER_LOST' });
+		});
 	}
 
 	createCollectables(collectiblesLayer) {
@@ -161,6 +195,10 @@ class Play extends Phaser.Scene {
 		};
 	}
 
+	getCurrentLevel() {
+		return this.registry.get('level') || 1;
+	}
+
 	createEndOfLevel(end, player) {
 		const endOfLevel = this.physics.add
 			.sprite(end.x, end.y, 'end')
@@ -170,8 +208,14 @@ class Play extends Phaser.Scene {
 
 		const eolOverlap = this.physics.add.overlap(player, endOfLevel, () => {
 			eolOverlap.active = false;
-			console.log('Payer has won!');
+			this.registry.inc('level', 1);
+			this.scene.restart({ gameStatus: 'LEVEL_COMPLETED' });
 		});
+	}
+
+	update() {
+		this.spikesImage.tilePositionX = this.cameras.main.scrollX * 0.3;
+		this.skyImage.tilePositionX = this.cameras.main.scrollX * 0.2;
 	}
 }
 

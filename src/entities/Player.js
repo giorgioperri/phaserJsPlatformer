@@ -6,6 +6,7 @@ import MeleeWeapon from '../attacks/MeleeWeapon';
 import anims from '../mixins/anims';
 import collidable from '../mixins/collidable';
 import { getTimestamp } from '../utils/functions';
+import EventEmitter from '../events/Emitter';
 
 class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y) {
@@ -67,7 +68,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	update() {
-		if (this.hasBeenHit || this.isSliding) return;
+		if (this.hasBeenHit || this.isSliding || !this.body) return;
+
+		if (this.getBounds().top > this.scene.config.height) {
+			EventEmitter.emit('PLAYER_LOST');
+			return;
+		}
+
 		const { left, right, space, down } = this.cursors;
 
 		const aKey = this.scene.input.keyboard.addKey('A');
@@ -171,6 +178,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		if (this.hasBeenHit) return;
 
 		this.health -= source.damage || source.properties.damage || 0;
+
+		if (this.health <= 0) {
+			EventEmitter.emit('PLAYER_LOST');
+			this.hasBeenHit = false;
+			return;
+		}
+
 		this.hp.decrease(this.health);
 
 		source.deliversHit && source.deliversHit(this);
