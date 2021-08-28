@@ -16,6 +16,9 @@ class Preload extends Phaser.Scene {
 		this.load.image('sky', 'assets/sky_play.png');
 		this.load.image('bg-spikes-dark', 'assets/bg_spikes_dark.png');
 
+		this.load.image('menu-bg', 'assets/background01.png');
+		this.load.image('back', 'assets/back.png');
+
 		this.load.image('iceball-1', 'assets/weapons/iceball_001.png');
 		this.load.image('iceball-2', 'assets/weapons/iceball_002.png');
 
@@ -72,12 +75,35 @@ class Preload extends Phaser.Scene {
 			spacing: 16,
 		});
 
-		this.load.once('complete', this.startGame, this);
+		this.load.audio('theme', 'assets/music/theme_music.wav');
+		this.load.audio('projectile-launch', 'assets/music/projectile_launch.wav');
+		this.load.audio('step', 'assets/music/step_mud.wav');
+		this.load.audio('jump', 'assets/music/jump.wav');
+		this.load.audio('swipe', 'assets/music/swipe.wav');
+		this.load.audio('collectiblePickup', 'assets/music/coin_pickup.wav');
+
+		const prod = process.env.FB_ENV || process.env.NODE_ENV === 'production';
+
+		this.load.on('progress', (value) => {
+			prod && FBInstant.setLoadingProgress(value * 100);
+		});
+
+		this.load.once('complete', () => {
+			if (prod) {
+				FBInstant.startGameAsync().then(() => {
+					this.startGame();
+				});
+			} else {
+				this.startGame();
+			}
+		});
 	}
 
 	startGame() {
 		this.registry.set('level', 1);
-		this.scene.start('PlayScene');
+		this.registry.set('unlocked-levels', 1);
+
+		this.scene.start('MenuScene');
 	}
 }
 

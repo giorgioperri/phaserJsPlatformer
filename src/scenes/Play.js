@@ -16,6 +16,9 @@ class Play extends Phaser.Scene {
 		this.score = 0;
 		this.hud = new Hud(this, 0, 0).setDepth(9);
 
+		this.playBGMusic();
+		this.collectSound = this.sound.add('collectiblePickup', { volume: 0.2 });
+
 		const map = this.createMap();
 
 		initAnims(this.anims);
@@ -46,6 +49,7 @@ class Play extends Phaser.Scene {
 			},
 		});
 
+		this.createBackButton();
 		this.createEndOfLevel(playerZones.end, player);
 		this.setupFollowupCameraOn(player);
 
@@ -54,6 +58,11 @@ class Play extends Phaser.Scene {
 		}
 
 		this.createGameEvents();
+	}
+
+	playBGMusic() {
+		if (this.sound.get('theme')) return;
+		this.sound.add('theme', { loop: true, volume: 0.1 }).play();
 	}
 
 	createMap() {
@@ -70,7 +79,6 @@ class Play extends Phaser.Scene {
 		const tilesetBG = map.getTileset('bg_spikes_tileset');
 		map.createLayer('BGcolor', tilesetBG);
 		const platformsColliders = map.createLayer('PlatformColliders', [tileset1, tileset2]);
-		//const background = map.createLayer('Background', [tileset1, tileset2]);
 		const backgroundDetails = map.createLayer('BackgroundDetails', [tileset1, tileset2]);
 		const platformsDown = map.createLayer('PlatformsDown', [tileset1, tileset2]);
 		const platforms = map.createLayer('Platforms', [tileset1, tileset2]);
@@ -85,7 +93,6 @@ class Play extends Phaser.Scene {
 
 		return {
 			platformsColliders,
-			//background,
 			backgroundDetails,
 			platforms,
 			playerZones,
@@ -162,6 +169,7 @@ class Play extends Phaser.Scene {
 		this.score += collectable.score;
 		this.hud.updateScoreBoard(this.score);
 		collectable.disableBody(true, true);
+		this.collectSound.play();
 	}
 
 	createEnemyColliders(enemies, { colliders }) {
@@ -199,6 +207,18 @@ class Play extends Phaser.Scene {
 		return this.registry.get('level') || 1;
 	}
 
+	createBackButton() {
+		this.add
+			.image(this.config.rightBottomCorner.x, this.config.rightBottomCorner.y, 'back')
+			.setOrigin(1)
+			.setScrollFactor(0)
+			.setScale(1.5)
+			.setInteractive()
+			.on('pointerup', () => {
+				this.scene.start('MenuScene');
+			});
+	}
+
 	createEndOfLevel(end, player) {
 		const endOfLevel = this.physics.add
 			.sprite(end.x, end.y, 'end')
@@ -208,7 +228,14 @@ class Play extends Phaser.Scene {
 
 		const eolOverlap = this.physics.add.overlap(player, endOfLevel, () => {
 			eolOverlap.active = false;
+
+			if (this.registry.get('level') === this.config.lastLevel) {
+				this.scene.start('CreditsScene');
+				return;
+			}
+
 			this.registry.inc('level', 1);
+			this.registry.inc('unlocked-levels', 1);
 			this.scene.restart({ gameStatus: 'LEVEL_COMPLETED' });
 		});
 	}
