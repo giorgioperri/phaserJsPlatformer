@@ -67,7 +67,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		initAnimations(this.scene.anims);
 
 		this.handleAttacks();
-		this.handleMovements();
 
 		this.scene.time.addEvent({
 			delay: 450,
@@ -93,7 +92,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 			return;
 		}
 
-		const { left, right, space, down } = this.cursors;
+		const { left, right, space } = this.cursors;
 
 		const aKey = this.scene.input.keyboard.addKey('A');
 		const dKey = this.scene.input.keyboard.addKey('D');
@@ -152,24 +151,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 			this.play('throw', true);
 			this.meleeWeapon.swing(this);
 			this.timeFromLastAttack = getTimestamp();
-		});
-	}
-
-	handleMovements() {
-		this.scene.input.keyboard.on('keydown-S', () => {
-			if (!this.isSliding && this.body.onFloor()) {
-				this.body.setSize(this.width, this.height / 2);
-				this.setOffset(0, this.height / 2);
-				this.setVelocityX(0);
-				this.play('slide', true);
-				this.isSliding = true;
-			}
-		});
-
-		this.scene.input.keyboard.on('keyup-S', () => {
-			this.body.setSize(this.width, 38);
-			this.setOffset(0, 0);
-			this.isSliding = false;
 		});
 	}
 
