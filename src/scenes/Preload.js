@@ -34,10 +34,24 @@ class Preload extends Phaser.Scene {
 		this.load.image('diamond-5', 'assets/collectibles/diamond_big_05.png');
 		this.load.image('diamond-6', 'assets/collectibles/diamond_big_06.png');
 
-		this.load.spritesheet('player', 'assets/player/move_sprite_1.png', {
+		this.load.spritesheet('nhuIdle', 'assets/v2/Nhu_idle.png', {
 			frameWidth: 32,
-			frameHeight: 38,
-			spacing: 32,
+			frameHeight: 29,
+		});
+
+		this.load.spritesheet('nhuJump', 'assets/v2/Nhu_jump.png', {
+			frameWidth: 32,
+			frameHeight: 29,
+		});
+
+		this.load.spritesheet('nhuThrow', 'assets/v2/Nhu_attack_ranged.png', {
+			frameWidth: 32,
+			frameHeight: 29,
+		});
+
+		this.load.spritesheet('nhuWalk', '../../assets/v2/Nhu_walk.png', {
+			frameWidth: 32,
+			frameHeight: 29,
 		});
 
 		this.load.spritesheet('playerSlide', 'assets/player/slide_sheet_2.png', {
@@ -55,12 +69,6 @@ class Preload extends Phaser.Scene {
 		this.load.spritesheet('snakey', 'assets/enemy/enemy_sheet_2.png', {
 			frameWidth: 32,
 			frameHeight: 64,
-			spacing: 32,
-		});
-
-		this.load.spritesheet('playerThrow', 'assets/player/throw_attack_sheet_1.png', {
-			frameWidth: 32,
-			frameHeight: 38,
 			spacing: 32,
 		});
 
@@ -103,7 +111,7 @@ class Preload extends Phaser.Scene {
 		this.registry.set('level', 1);
 		this.registry.set('unlocked-levels', 1);
 
-		this.scene.start('MenuScene');
+		this.scene.start('PlayScene');
 	}
 }
 
