@@ -54,6 +54,12 @@ class Preload extends Phaser.Scene {
 			frameHeight: 29,
 		});
 
+		this.load.spritesheet('greenProjectile', '../../assets/v2/nhu_projectile.png', {
+			frameWidth: 16,
+			frameHeight: 16,
+			spacing: 4,
+		});
+
 		this.load.spritesheet('playerSlide', 'assets/player/slide_sheet_2.png', {
 			frameWidth: 32,
 			frameHeight: 38,

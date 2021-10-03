@@ -28,6 +28,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		this.playerSpeed = 150;
 		this.jumpCount = 0;
 		this.consecutiveJumps = 1;
+		this.name = 'Player';
 
 		this.isSliding = false;
 
@@ -134,7 +135,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 	handleAttacks() {
 		this.scene.input.keyboard.on('keydown-Q', () => {
-			this.projectiles.fireProjectile(this, 'iceball');
+			this.projectiles.fireProjectile(this, 'greenProjectile');
 			this.play('throw', true);
 			this.projectileSound.play();
 		});

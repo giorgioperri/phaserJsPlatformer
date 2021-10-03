@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
 
 	playBGMusic() {
 		if (this.sound.get('theme')) return;
-		this.sound.add('theme', { loop: true, volume: 0.1 }).play();
+		//this.sound.add('theme', { loop: true, volume: 0.1 }).play();
 	}
 
 	createMap() {

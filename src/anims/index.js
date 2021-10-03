@@ -14,6 +14,13 @@ export default (anims) => {
 	});
 
 	anims.create({
+		key: 'greenProjectile',
+		frames: anims.generateFrameNumbers('greenProjectile', { start: 0, end: 4 }),
+		frameRate: 8,
+		repeat: -1,
+	});
+
+	anims.create({
 		key: 'fireball',
 		frames: [{ key: 'fireball-1' }, { key: 'fireball-2' }, { key: 'fireball-3' }],
 		frameRate: 5,

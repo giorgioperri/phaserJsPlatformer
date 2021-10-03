@@ -1,6 +1,7 @@
 import 'phaser';
 import Projectile from './Projectile';
 import { getTimestamp } from '../utils/functions';
+import { setScale } from 'phaser/src/gameobjects/components/Transform';
 
 export default class Projectiles extends Phaser.Physics.Arcade.Group {
 	constructor(scene, key) {
@@ -33,6 +34,11 @@ export default class Projectiles extends Phaser.Physics.Arcade.Group {
 		const center = initiator.getCenter();
 		let centerXOffset;
 
+		if (initiator.name === 'Player') {
+			projectile.setOffset(0);
+			projectile.setScale(1.7);
+		}
+
 		if (initiator.lastDirection === Phaser.Physics.Arcade.FACING_RIGHT) {
 			projectile.speed = Math.abs(projectile.speed);
 			projectile.setFlipX(false);
@@ -40,7 +46,6 @@ export default class Projectiles extends Phaser.Physics.Arcade.Group {
 		} else {
 			projectile.speed = -Math.abs(projectile.speed);
 			projectile.setFlipX(true);
-
 			centerXOffset = -20;
 		}
 
