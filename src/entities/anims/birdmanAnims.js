@@ -1,8 +1,8 @@
 export default (anims) => {
 	anims.create({
-		key: 'birdman-idle',
+		key: 'birdman-walk',
 		frames: anims.generateFrameNumbers('birdman', { start: 0, end: 12 }),
-		frameRate: 8,
+		frameRate: 4,
 		repeat: -1,
 	});
 

@@ -15,6 +15,7 @@ export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 		this.weaponName = weaponName;
 		this.weaponAnim = weaponName + 'Swing';
 		this.wielder = null;
+		this.setScale(1.4);
 
 		this.effectManager = new EffectManager(this.scene);
 

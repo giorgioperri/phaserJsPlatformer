@@ -9,7 +9,7 @@ export default (anims) => {
 	anims.create({
 		key: 'swordDefaultSwing',
 		frames: anims.generateFrameNumbers('swordDefault', { start: 0, end: 2 }),
-		frameRate: 20,
+		frameRate: 10,
 		repeat: 0,
 	});
 

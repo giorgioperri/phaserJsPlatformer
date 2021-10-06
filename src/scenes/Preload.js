@@ -66,10 +66,9 @@ class Preload extends Phaser.Scene {
 			spacing: 32,
 		});
 
-		this.load.spritesheet('birdman', 'assets/enemy/enemy_sheet.png', {
-			frameWidth: 32,
-			frameHeight: 64,
-			spacing: 32,
+		this.load.spritesheet('birdman', '../../assets/v2/bad_guy_1_walk.png', {
+			frameWidth: 15,
+			frameHeight: 32,
 		});
 
 		this.load.spritesheet('snakey', 'assets/enemy/enemy_sheet_2.png', {
@@ -83,10 +82,9 @@ class Preload extends Phaser.Scene {
 			frameHeight: 32,
 		});
 
-		this.load.spritesheet('swordDefault', 'assets/weapons/sword_sheet_1.png', {
-			frameWidth: 52,
-			frameHeight: 32,
-			spacing: 16,
+		this.load.spritesheet('swordDefault', '../../assets/v2/Nhu_attack_close.png', {
+			frameWidth: 76,
+			frameHeight: 31,
 		});
 
 		this.load.audio('theme', 'assets/music/theme_music.wav');

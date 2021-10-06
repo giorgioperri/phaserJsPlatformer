@@ -9,9 +9,7 @@ class Birdman extends Enemy {
 
 	init() {
 		super.init();
-
-		this.setSize(20, 45);
-		this.setOffset(7, 20);
+		this.setScale(1.4);
 	}
 
 	update(time, delta) {
@@ -24,12 +22,11 @@ class Birdman extends Enemy {
 		if (this.isPlayingAnimation('birdman-damaged')) {
 			return;
 		}
-		this.play('birdman-idle', true);
+		this.play('birdman-walk', true);
 	}
 
 	takesHit(source) {
 		super.takesHit(source);
-		this.play('birdman-damaged', true);
 	}
 }
 
