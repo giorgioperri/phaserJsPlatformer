@@ -59,11 +59,12 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 			this.health
 		);
 
-		this.body.setSize(20, 0);
 		this.body.setGravityY(this.gravity);
-		this.setCollideWorldBounds(true);
-		this.setOrigin(0.5, 1);
 		this.setScale(1.4);
+		this.setOrigin(0, 1);
+		this.setSize(this.width - 15, this.height - 10);
+		this.setOffset(5, 8);
+		this.setCollideWorldBounds(true);
 
 		initAnimations(this.scene.anims);
 
@@ -130,7 +131,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		}
 
 		this.play(onFloor ? (this.body.velocity.x !== 0 ? 'run' : 'idle') : 'jump', true);
-		//this.play('idle');
 	}
 
 	handleAttacks() {

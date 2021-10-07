@@ -14,6 +14,13 @@ export default (anims) => {
 	});
 
 	anims.create({
+		key: 'blasterSwing',
+		frames: anims.generateFrameNumbers('blaster', { start: 0, end: 3 }),
+		frameRate: 10,
+		repeat: 0,
+	});
+
+	anims.create({
 		key: 'greenProjectile',
 		frames: anims.generateFrameNumbers('greenProjectile', { start: 0, end: 4 }),
 		frameRate: 8,

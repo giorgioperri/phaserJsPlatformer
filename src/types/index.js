@@ -1,7 +1,7 @@
 import Birdman from '../entities/Birdman';
-import Snakey from '../entities/Snakey';
+import Gunner from '../entities/Gunner';
 
 export const ENEMY_TYPES = {
 	Birdman,
-	Snakey,
+	Gunner,
 };

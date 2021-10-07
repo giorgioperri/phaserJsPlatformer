@@ -29,6 +29,8 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.platformCollidersLayer = null;
 		this.rayGraphics = this.scene.add.graphics({ lineStyle: { width: 2, color: 0xaa00aa } });
 
+		this.isShooting = false;
+
 		this.damage = 20;
 
 		this.health = 20;
@@ -56,7 +58,8 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	patrol(time) {
-		if (!this.body || !this.body.onFloor()) {
+		if (!this.body || !this.body.onFloor() || this.isShooting) {
+			this.setVelocityX(0);
 			return;
 		}
 

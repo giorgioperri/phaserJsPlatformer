@@ -71,10 +71,14 @@ class Preload extends Phaser.Scene {
 			frameHeight: 32,
 		});
 
-		this.load.spritesheet('snakey', 'assets/enemy/enemy_sheet_2.png', {
-			frameWidth: 32,
-			frameHeight: 64,
-			spacing: 32,
+		this.load.spritesheet('gunner', '../../assets/v2/bad_guy_2_walk.png', {
+			frameWidth: 24,
+			frameHeight: 25,
+		});
+
+		this.load.spritesheet('blaster', '../../assets/v2/bad_guy_2_shoot.png', {
+			frameWidth: 57,
+			frameHeight: 25,
 		});
 
 		this.load.spritesheet('hitSheet', 'assets/weapons/hit_effect_sheet.png', {

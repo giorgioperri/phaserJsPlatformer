@@ -27,6 +27,12 @@ class Birdman extends Enemy {
 
 	takesHit(source) {
 		super.takesHit(source);
+		this.setTintFill(0xffffff);
+
+		this.scene.time.delayedCall(100, () => {
+			this.clearTint();
+			if (this.health <= 0) this.setTint(0xff0000);
+		});
 	}
 }
 

@@ -1,10 +1,11 @@
 import Enemy from './Enemy';
-import initAnims from './anims/snakeyAnims';
+import initAnims from './anims/gunnerAnims';
 import Projectiles from '../attacks/Projectiles';
+import MeleeWeapon from '../attacks/MeleeWeapon';
 
-class Snakey extends Enemy {
+class Gunner extends Enemy {
 	constructor(scene, x, y) {
-		super(scene, x, y, 'snakey');
+		super(scene, x, y, 'gunner');
 		initAnims(scene.anims);
 	}
 
@@ -18,8 +19,9 @@ class Snakey extends Enemy {
 		this.attackDelay = this.getAttackDelay();
 		this.lastDirection = null;
 
-		this.setSize(12, 45);
-		this.setOffset(10, 15);
+		this.meleeWeapon = new MeleeWeapon(this.scene, 0, 0, 'blaster');
+
+		this.setScale(1.4);
 	}
 
 	update(time, delta) {
@@ -29,28 +31,30 @@ class Snakey extends Enemy {
 			return;
 		}
 
-		if (this.active) {
-			if (this.body.velocity.x >= 0) {
-				this.lastDirection = Phaser.Physics.Arcade.FACING_RIGHT;
-			} else {
-				this.lastDirection = Phaser.Physics.Arcade.FACING_LEFT;
-			}
+		if (this.body.velocity.x > 0) {
+			this.lastDirection = Phaser.Physics.Arcade.FACING_RIGHT;
+		} else if (this.body.velocity.x < 0) {
+			this.lastDirection = Phaser.Physics.Arcade.FACING_LEFT;
 		}
 
 		if (this.timeFromLastAttack + this.attackDelay <= time) {
-			this.projectiles.fireProjectile(this, 'fireball');
 			this.timeFromLastAttack = time;
 			this.attackDelay = this.getAttackDelay();
+			this.meleeWeapon.swing(this);
 		}
 
 		if (!this.active) {
 			return;
 		}
 
-		if (this.isPlayingAnimation('snakey-damaged')) {
+		if (this.isPlayingAnimation('gunner-shoot')) {
+			this.setOffset(50, 0);
 			return;
+		} else {
+			this.setOffset(0, 0);
 		}
-		this.play('snakey-walk', true);
+
+		this.play('gunner-walk', true);
 	}
 
 	getAttackDelay() {
@@ -59,8 +63,7 @@ class Snakey extends Enemy {
 
 	takesHit(source) {
 		super.takesHit(source);
-		this.play('snakey-damaged', true);
 	}
 }
 
-export default Snakey;
+export default Gunner;
