@@ -46,6 +46,7 @@ class Play extends Phaser.Scene {
 				projectiles: enemies.getProjectiles(),
 				collectibles,
 				traps: layers.traps,
+				meleeWeapons: enemies.getMeleeWeapons(),
 			},
 		});
 
@@ -185,7 +186,8 @@ class Play extends Phaser.Scene {
 			.addCollider(colliders.platformsColliders)
 			.addCollider(colliders.projectiles, this.onHit)
 			.addOverlap(colliders.collectibles, this.onCollect, this)
-			.addCollider(colliders.traps, this.onHit);
+			.addCollider(colliders.traps, this.onHit)
+			.addOverlap(colliders.meleeWeapons, this.onHit);
 	}
 
 	setupFollowupCameraOn(player) {

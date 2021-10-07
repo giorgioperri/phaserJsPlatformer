@@ -13,7 +13,7 @@ class Gunner extends Enemy {
 		super.init();
 		this.speed = 50;
 		this.health = 50;
-
+		this.name = 'Gunner';
 		this.projectiles = new Projectiles(this.scene, 'fireball-1');
 		this.timeFromLastAttack = 0;
 		this.attackDelay = this.getAttackDelay();

@@ -1,6 +1,5 @@
 import 'phaser';
 import EffectManager from '../effects/EffectManager';
-import { getTimestamp } from '../utils/functions';
 
 export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, weaponName) {
@@ -43,9 +42,17 @@ export default class MeleeWeapon extends Phaser.Physics.Arcade.Sprite {
 		this.setFlipX(this.wielder.lastDirection === Phaser.Physics.Arcade.FACING_RIGHT ? false : true);
 		this.body.reset(
 			this.wielder.x +
-				(this.wielder.lastDirection === Phaser.Physics.Arcade.FACING_RIGHT ? 25 : -25),
+				(this.wielder.lastDirection === Phaser.Physics.Arcade.FACING_RIGHT ? 25 : 10),
 			this.wielder.y
 		);
+
+		if (this.wielder.name === 'Gunner') {
+			this.body.reset(
+				this.wielder.x +
+					(this.wielder.lastDirection === Phaser.Physics.Arcade.FACING_RIGHT ? 60 : -60),
+				this.wielder.y
+			);
+		}
 	}
 
 	swing(wielder) {

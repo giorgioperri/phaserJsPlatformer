@@ -18,6 +18,15 @@ class Enemies extends Phaser.GameObjects.Group {
 		return projectiles;
 	}
 
+	getMeleeWeapons() {
+		const meleeWeapons = new Phaser.GameObjects.Group();
+		this.getChildren().forEach((enemy) => {
+			enemy.meleeWeapon && meleeWeapons.add(enemy.meleeWeapon);
+		});
+
+		return meleeWeapons;
+	}
+
 	getTypes() {
 		return ENEMY_TYPES;
 	}

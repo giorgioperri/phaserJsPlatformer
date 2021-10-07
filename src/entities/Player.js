@@ -49,7 +49,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.lastDirection = Phaser.Physics.Arcade.FACING_RIGHT;
 
-		this.health = 100;
+		this.health = 50;
 
 		this.hp = new HealthBar(
 			this.scene,
@@ -165,6 +165,15 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	bounceOff(damageSource) {
+		if (damageSource.wielder && damageSource.wielder.name === 'Gunner') {
+			if (damageSource.body) {
+				damageSource.wielder.x > this.x
+					? this.setVelocityX(-this.bounceVelocity)
+					: this.setVelocityX(this.bounceVelocity);
+			}
+			return;
+		}
+
 		if (damageSource.body) {
 			this.body.touching.right
 				? this.setVelocityX(-this.bounceVelocity)
