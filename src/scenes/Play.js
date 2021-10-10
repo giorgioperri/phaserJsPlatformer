@@ -26,7 +26,7 @@ class Play extends Phaser.Scene {
 		const layers = this.createLayers(map);
 		const playerZones = this.getPlayerZones(layers.playerZones);
 		const player = this.createPlayer(playerZones.start);
-		const enemies = this.createEnemies(layers.enemySpawns, layers.platformsColliders);
+		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
 		//const collectibles = this.createCollectables(layers.collectibles);
 
 		//this.createBG(map);
@@ -42,7 +42,7 @@ class Play extends Phaser.Scene {
 
 		this.createPlayerColliders(player, {
 			colliders: {
-				platformsColliders: layers.platformsColliders,
+				platformsColliders: layers.colliders,
 				projectiles: enemies.getProjectiles(),
 				//collectibles,
 				traps: layers.traps,
@@ -82,10 +82,10 @@ class Play extends Phaser.Scene {
 		const plants = map.createLayer('Bg_Plants', tileset1);
 		const doorBackgrounds = map.createLayer('Bg_Doors', tileset1);
 		const doors = map.createLayer('Doors', tileset1);
-		const platforms = map.createLayer('Platforms');
 		const colliders = map.createLayer('Colliders');
 		const playerZones = map.getObjectLayer('PlayerZones');
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
+		const platforms = map.createLayer('Platforms');
 		// const collectibles = map.getObjectLayer('Collectibles');
 		// const traps = map.createLayer('Traps', tileset1);
 
@@ -98,10 +98,10 @@ class Play extends Phaser.Scene {
 			plants,
 			doorBackgrounds,
 			doors,
-			platforms,
 			colliders,
 			playerZones,
 			enemySpawns,
+			platforms,
 			// traps,
 		};
 	}
@@ -146,13 +146,13 @@ class Play extends Phaser.Scene {
 		return new Player(this, start.x, start.y);
 	}
 
-	createEnemies(spawnLayer, platformsColliders) {
+	createEnemies(spawnLayer, colliders) {
 		const enemies = new Enemies(this);
 		const enemyTypes = enemies.getTypes();
 
 		spawnLayer.objects.forEach((spawnPoint) => {
 			const enemy = new enemyTypes[spawnPoint.type](this, spawnPoint.x, spawnPoint.y);
-			enemy.setPlatformColliders(platformsColliders);
+			enemy.setPlatformColliders(colliders);
 			enemies.add(enemy);
 		});
 

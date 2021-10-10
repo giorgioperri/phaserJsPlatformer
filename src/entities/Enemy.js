@@ -26,7 +26,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.timeFromLastTurn = 0;
 		this.maxPatrolDistance = 1000;
 		this.currentPatrolDistance = 0;
-		this.platformCollidersLayer = null;
+		this.colliders = null;
 		this.rayGraphics = this.scene.add.graphics({ lineStyle: { width: 2, color: 0xaa00aa } });
 
 		this.isShooting = false;
@@ -64,7 +64,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 		this.currentPatrolDistance += Math.abs(this.body.deltaX());
 
-		const { ray, hasHit } = this.raycast(this.body, this.platformCollidersLayer, {
+		const { ray, hasHit } = this.raycast(this.body, this.colliders, {
 			raylength: 50,
 			precision: 1,
 			steepness: 0.2,
@@ -86,8 +86,8 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 		}
 	}
 
-	setPlatformColliders(platformCollidersLayer) {
-		this.platformCollidersLayer = platformCollidersLayer;
+	setPlatformColliders(colliders) {
+		this.colliders = colliders;
 	}
 
 	takesHit(source) {
