@@ -82,10 +82,10 @@ class Play extends Phaser.Scene {
 		const plants = map.createLayer('Bg_Plants', tileset1);
 		const doorBackgrounds = map.createLayer('Bg_Doors', tileset1);
 		const doors = map.createLayer('Doors', tileset1);
-		const colliders = map.createLayer('Colliders');
+		const colliders = map.createLayer('Colliders', tileset1);
 		const playerZones = map.getObjectLayer('PlayerZones');
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
-		const platforms = map.createLayer('Platforms');
+		const platforms = map.createLayer('Platforms', tileset1);
 		// const collectibles = map.getObjectLayer('Collectibles');
 		// const traps = map.createLayer('Traps', tileset1);
 
