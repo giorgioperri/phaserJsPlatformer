@@ -27,15 +27,15 @@ class Play extends Phaser.Scene {
 		const playerZones = this.getPlayerZones(layers.playerZones);
 		const player = this.createPlayer(playerZones.start);
 		const enemies = this.createEnemies(layers.enemySpawns, layers.platformsColliders);
-		const collectibles = this.createCollectables(layers.collectibles);
+		//const collectibles = this.createCollectables(layers.collectibles);
 
-		this.createBG(map);
+		//this.createBG(map);
 
-		this.createForegroundDressing(map);
+		//this.createForegroundDressing(map);
 
 		this.createEnemyColliders(enemies, {
 			colliders: {
-				platformsColliders: layers.platformsColliders,
+				platformsColliders: layers.colliders,
 				player,
 			},
 		});
@@ -44,7 +44,7 @@ class Play extends Phaser.Scene {
 			colliders: {
 				platformsColliders: layers.platformsColliders,
 				projectiles: enemies.getProjectiles(),
-				collectibles,
+				//collectibles,
 				traps: layers.traps,
 				meleeWeapons: enemies.getMeleeWeapons(),
 			},
@@ -68,40 +68,41 @@ class Play extends Phaser.Scene {
 
 	createMap() {
 		const map = this.make.tilemap({ key: `level-${this.getCurrentLevel()}` });
-		map.addTilesetImage('main_lev_build_1', 'tiles-1');
-		map.addTilesetImage('main_lev_build_2', 'tiles-2');
-		map.addTilesetImage('bg_spikes_tileset', 'tiles-bg');
+		map.addTilesetImage('nhu_tileset', 'tiles-1');
+		// map.addTilesetImage('bg_spikes_tileset', 'tiles-bg');
 		return map;
 	}
 
 	createLayers(map) {
-		const tileset1 = map.getTileset('main_lev_build_1');
-		const tileset2 = map.getTileset('main_lev_build_2');
-		const tilesetBG = map.getTileset('bg_spikes_tileset');
-		map.createLayer('BGcolor', tilesetBG);
-		const platformsColliders = map.createLayer('PlatformColliders', [tileset1, tileset2]);
-		const backgroundDetails = map.createLayer('BackgroundDetails', [tileset1, tileset2]);
-		const platformsDown = map.createLayer('PlatformsDown', [tileset1, tileset2]);
-		const platforms = map.createLayer('Platforms', [tileset1, tileset2]);
-		const secondaryPlatforms = map.createLayer('SecondaryPlatforms', [tileset1, tileset2]);
+		const tileset1 = map.getTileset('nhu_tileset');
+		// const tilesetBG = map.getTileset('bg_spikes_tileset');
+		// map.createLayer('BGcolor', tilesetBG);
+		const ropes = map.createLayer('Bg_Ropes', tileset1);
+		const pipes = map.createLayer('Bg_Pipes', tileset1);
+		const plants = map.createLayer('Bg_Plants', tileset1);
+		const doorBackgrounds = map.createLayer('Bg_Doors', tileset1);
+		const doors = map.createLayer('Doors', tileset1);
+		const platforms = map.createLayer('Platforms');
+		const colliders = map.createLayer('Colliders');
 		const playerZones = map.getObjectLayer('PlayerZones');
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
-		const collectibles = map.getObjectLayer('Collectibles');
-		const traps = map.createLayer('Traps', tileset1);
+		// const collectibles = map.getObjectLayer('Collectibles');
+		// const traps = map.createLayer('Traps', tileset1);
 
-		platformsColliders.setCollisionByProperty({ collides: true });
-		traps.setCollisionByExclusion(-1);
+		colliders.setCollisionByProperty({ collides: true });
+		//traps.setCollisionByExclusion(-1);
 
 		return {
-			platformsColliders,
-			backgroundDetails,
+			ropes,
+			pipes,
+			plants,
+			doorBackgrounds,
+			doors,
 			platforms,
+			colliders,
 			playerZones,
-			secondaryPlatforms,
-			platformsDown,
 			enemySpawns,
-			collectibles,
-			traps,
+			// traps,
 		};
 	}
 
@@ -243,8 +244,8 @@ class Play extends Phaser.Scene {
 	}
 
 	update() {
-		this.spikesImage.tilePositionX = this.cameras.main.scrollX * 0.3;
-		this.skyImage.tilePositionX = this.cameras.main.scrollX * 0.2;
+		//this.spikesImage.tilePositionX = this.cameras.main.scrollX * 0.3;
+		//this.skyImage.tilePositionX = this.cameras.main.scrollX * 0.2;
 	}
 }
 
