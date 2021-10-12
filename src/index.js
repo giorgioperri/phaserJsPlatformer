@@ -38,9 +38,10 @@ const createScene = (Scene) => new Scene(SHARED_CONFIG);
 const initScenes = () => Scenes.map(createScene);
 
 const config = {
-	type: Phaser.AUTO,
+	type: Phaser.CANVAS,
 	...SHARED_CONFIG,
 	pixelArt: true,
+	antialias: false,
 	physics: {
 		default: 'arcade',
 		arcade: {

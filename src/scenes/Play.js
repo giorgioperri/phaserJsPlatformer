@@ -5,6 +5,7 @@ import initAnims from '../anims';
 import Collectibles from '../groups/Collectibles';
 import Hud from '../hud';
 import EventEmitter from '../events/Emitter';
+import { setOrigin } from 'phaser/src/gameobjects/components/Origin';
 
 class Play extends Phaser.Scene {
 	constructor(config) {
@@ -29,7 +30,7 @@ class Play extends Phaser.Scene {
 		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
 		//const collectibles = this.createCollectables(layers.collectibles);
 
-		//this.createBG(map);
+		this.createBG(map);
 
 		//this.createForegroundDressing(map);
 
@@ -107,19 +108,55 @@ class Play extends Phaser.Scene {
 	}
 
 	createBG(map) {
-		const bgObject = map.getObjectLayer('DistanceBg').objects[0];
-		this.spikesImage = this.add
-			.tileSprite(bgObject.x, bgObject.y, this.config.width, bgObject.height, 'bg-spikes-dark')
-			.setDepth(-10)
-			.setOrigin(0, 1)
+		//const bgObject1 = map.getObjectLayer('BG_1').objects[0];
+
+		// this.spikesImage = this.add
+		// 	.tileSprite(bgObject.x, bgObject.y, this.config.width, bgObject.height, 'bg-spikes-dark')
+		// 	.setDepth(-10)
+		// 	.setOrigin(0, 1)
+		// 	.setScrollFactor(0, 1);
+
+		// this.skyImage = this.add
+		// 	.tileSprite(0, 0, this.config.width, 180, 'sky')
+		// 	.setDepth(-15)
+		// 	.setOrigin(0)
+		// 	.setScale(1.1)
+		// 	.setScrollFactor(0, 1);
+
+		this.bg0 = this.add
+			.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-0')
+			.setDepth(-30)
+			.setOrigin(0)
+			.setScale(1.5)
 			.setScrollFactor(0, 1);
 
-		this.skyImage = this.add
-			.tileSprite(0, 0, this.config.width, 180, 'sky')
-			.setDepth(-15)
-			.setOrigin(0)
-			.setScale(1.1)
+		this.bg1 = this.add
+			.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-1')
+			.setDepth(-29)
+			.setOrigin(0, 0)
+			.setScale(1.8)
 			.setScrollFactor(0, 1);
+
+		this.bg2 = this.add
+			.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-2')
+			.setDepth(-28)
+			.setOrigin(0, 0)
+			.setScale(1.8)
+			.setScrollFactor(0, 1);
+
+		this.bg3 = this.add
+			.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-3')
+			.setDepth(-27)
+			.setOrigin(0, 0)
+			.setScale(1.8)
+			.setScrollFactor(0, 1);
+
+		// this.bg4 = this.add
+		// 	.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-4')
+		// 	.setDepth(-30)
+		// 	.setOrigin(0)
+		// 	.setScale(1.1)
+		// 	.setScrollFactor(0, 1);
 	}
 
 	createGameEvents() {
@@ -245,7 +282,10 @@ class Play extends Phaser.Scene {
 
 	update() {
 		//this.spikesImage.tilePositionX = this.cameras.main.scrollX * 0.3;
-		//this.skyImage.tilePositionX = this.cameras.main.scrollX * 0.2;
+		this.bg1.tilePositionX = this.cameras.main.scrollX * 0.05;
+		this.bg2.tilePositionX = this.cameras.main.scrollX * 0.2;
+		this.bg3.tilePositionX = this.cameras.main.scrollX * 0.3;
+		//this.bg4.tilePositionX = this.cameras.main.scrollX * 0.05;
 	}
 }
 
