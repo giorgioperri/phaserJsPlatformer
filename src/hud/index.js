@@ -31,8 +31,8 @@ export default class Hud extends Phaser.GameObjects.Container {
 		});
 
 		const scoreImage = this.scene.add
-			.image(scoreText.width + 5, 0, 'diamond')
-			.setOrigin(0)
+			.image(scoreText.width + 5, 0, 'battery')
+			.setOrigin(0, 0.3)
 			.setScale(1.5);
 
 		const scoreBoard = this.scene.add.container(0, 0, [scoreText, scoreImage]);

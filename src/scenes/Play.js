@@ -28,9 +28,9 @@ class Play extends Phaser.Scene {
 		const playerZones = this.getPlayerZones(layers.playerZones);
 		const player = this.createPlayer(playerZones.start);
 		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
-		//const collectibles = this.createCollectables(layers.collectibles);
+		const collectibles = this.createCollectables(layers.collectibles);
 
-		this.createBG(map);
+		this.createBG();
 
 		//this.createForegroundDressing(map);
 
@@ -45,7 +45,7 @@ class Play extends Phaser.Scene {
 			colliders: {
 				platformsColliders: layers.colliders,
 				projectiles: enemies.getProjectiles(),
-				//collectibles,
+				collectibles,
 				traps: layers.traps,
 				meleeWeapons: enemies.getMeleeWeapons(),
 			},
@@ -79,6 +79,7 @@ class Play extends Phaser.Scene {
 		// const tilesetBG = map.getTileset('bg_spikes_tileset');
 		// map.createLayer('BGcolor', tilesetBG);
 		const ropes = map.createLayer('Bg_Ropes', tileset1);
+		const traps = map.createLayer('Traps', tileset1);
 		const pipes = map.createLayer('Bg_Pipes', tileset1);
 		const plants = map.createLayer('Bg_Plants', tileset1);
 		const doorBackgrounds = map.createLayer('Bg_Doors', tileset1);
@@ -87,11 +88,10 @@ class Play extends Phaser.Scene {
 		const playerZones = map.getObjectLayer('PlayerZones');
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
 		const platforms = map.createLayer('Platforms', tileset1);
-		// const collectibles = map.getObjectLayer('Collectibles');
-		// const traps = map.createLayer('Traps', tileset1);
+		const collectibles = map.getObjectLayer('Collectibles');
 
 		colliders.setCollisionByProperty({ collides: true });
-		//traps.setCollisionByExclusion(-1);
+		traps.setCollisionByExclusion(-1);
 
 		return {
 			ropes,
@@ -103,26 +103,12 @@ class Play extends Phaser.Scene {
 			playerZones,
 			enemySpawns,
 			platforms,
-			// traps,
+			traps,
+			collectibles,
 		};
 	}
 
-	createBG(map) {
-		//const bgObject1 = map.getObjectLayer('BG_1').objects[0];
-
-		// this.spikesImage = this.add
-		// 	.tileSprite(bgObject.x, bgObject.y, this.config.width, bgObject.height, 'bg-spikes-dark')
-		// 	.setDepth(-10)
-		// 	.setOrigin(0, 1)
-		// 	.setScrollFactor(0, 1);
-
-		// this.skyImage = this.add
-		// 	.tileSprite(0, 0, this.config.width, 180, 'sky')
-		// 	.setDepth(-15)
-		// 	.setOrigin(0)
-		// 	.setScale(1.1)
-		// 	.setScrollFactor(0, 1);
-
+	createBG() {
 		this.bg0 = this.add
 			.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-0')
 			.setDepth(-30)
@@ -150,13 +136,6 @@ class Play extends Phaser.Scene {
 			.setOrigin(0, 0)
 			.setScale(1.8)
 			.setScrollFactor(0, 1);
-
-		// this.bg4 = this.add
-		// 	.tileSprite(0, 0, this.config.width, this.config.height, 'gameplay-bg-4')
-		// 	.setDepth(-30)
-		// 	.setOrigin(0)
-		// 	.setScale(1.1)
-		// 	.setScrollFactor(0, 1);
 	}
 
 	createGameEvents() {
@@ -169,7 +148,8 @@ class Play extends Phaser.Scene {
 		const collectibles = new Collectibles(this).setDepth(3);
 
 		collectibles.addFromLayer(collectiblesLayer);
-		collectibles.playAnimation('diamondShine');
+		collectibles.playAnimation('batterySpark');
+		collectibles.rotate(0.5);
 
 		return collectibles;
 	}

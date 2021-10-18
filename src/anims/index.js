@@ -42,16 +42,9 @@ export default (anims) => {
 	});
 
 	anims.create({
-		key: 'diamondShine',
-		frames: [
-			{ key: 'diamond-1' },
-			{ key: 'diamond-2' },
-			{ key: 'diamond-3' },
-			{ key: 'diamond-4' },
-			{ key: 'diamond-5' },
-			{ key: 'diamond-6' },
-		],
-		frameRate: 5,
+		key: 'batterySpark',
+		frames: anims.generateFrameNumbers('battery', { start: 0, end: 4 }),
+		frameRate: 8,
 		repeat: -1,
 	});
 };
