@@ -15,6 +15,7 @@ class MenuScene extends BaseScene {
 		super.create();
 
 		this.createMenu(this.menu, this.setupMenuEvents.bind(this));
+		this.add.image(this.config.width / 2, this.config.height / 3, 'logo').setScale(0.6);
 	}
 
 	setupMenuEvents(menuItem) {
@@ -22,10 +23,10 @@ class MenuScene extends BaseScene {
 		textGO.setInteractive();
 
 		textGO.on('pointerover', () => {
-			textGO.setStyle({ fill: '#fff' });
+			textGO.setStyle({ fill: '#ff003b' });
 		});
 		textGO.on('pointerout', () => {
-			textGO.setStyle({ fill: '#000' });
+			textGO.setStyle({ fill: '#ffffff' });
 		});
 		textGO.on('pointerup', () => {
 			menuItem.scene && this.scene.start(menuItem.scene);

@@ -11,6 +11,9 @@ class Preload extends Phaser.Scene {
 
 		this.load.image('tiles-1', 'assets/v2/nhu_tileset.png');
 
+		this.load.image('logo', 'assets/v2/logo.png');
+		this.load.image('menuBg', 'assets/v2/bgMenu.png');
+
 		this.load.image('sky', 'assets/sky_play.png');
 		this.load.image('bg-spikes-dark', 'assets/bg_spikes_dark.png');
 		this.load.image('gameplay-bg-0', '../../assets/v2/bg/bg_layer 1.png');
@@ -119,7 +122,7 @@ class Preload extends Phaser.Scene {
 		this.registry.set('level', 1);
 		this.registry.set('unlocked-levels', 1);
 
-		this.scene.start('PlayScene');
+		this.scene.start('MenuScene');
 	}
 }
 

@@ -7,7 +7,7 @@ class BaseScene extends Phaser.Scene {
 	}
 
 	create() {
-		this.add.image(0, 0, 'menu-bg').setOrigin(0).setScale(2.7);
+		this.add.image(0, 0, 'menuBg').setOrigin(0).setScale(3.8);
 
 		const backButton = this.config.canGoBack
 			? this.add
@@ -27,11 +27,14 @@ class BaseScene extends Phaser.Scene {
 		let lastMenuPositionOffset = 0;
 
 		menu.forEach((menuItem) => {
-			const menuPosition = [this.config.width / 2, this.config.height / 2 + lastMenuPositionOffset];
+			const menuPosition = [
+				this.config.width / 2,
+				this.config.height / 1.3 + lastMenuPositionOffset,
+			];
 			menuItem.textGO = this.add
 				.text(...menuPosition, menuItem.text, {
 					fontSize: '45px',
-					fill: '#000',
+					fill: '#ffffff',
 				})
 				.setOrigin(0.5, 1);
 
