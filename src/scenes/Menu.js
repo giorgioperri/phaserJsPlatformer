@@ -5,9 +5,9 @@ class MenuScene extends BaseScene {
 		super('MenuScene', config);
 
 		this.menu = [
-			{ scene: 'PlayScene', text: 'Play' },
-			{ scene: 'LevelScene', text: 'Levels' },
-			{ scene: null, text: 'Exit' },
+			{ scene: 'PlayScene', text: 'PLAY' },
+			{ scene: 'LevelScene', text: 'LEVELS' },
+			{ scene: null, text: 'EXIT' },
 		];
 	}
 
@@ -23,7 +23,7 @@ class MenuScene extends BaseScene {
 		textGO.setInteractive();
 
 		textGO.on('pointerover', () => {
-			textGO.setStyle({ fill: '#ff003b' });
+			textGO.setStyle({ fill: '#a1ffa5' });
 		});
 		textGO.on('pointerout', () => {
 			textGO.setStyle({ fill: '#ffffff' });

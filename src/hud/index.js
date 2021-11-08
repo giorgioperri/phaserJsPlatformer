@@ -23,17 +23,17 @@ export default class Hud extends Phaser.GameObjects.Container {
 	}
 
 	createScoreBoard() {
-		const fontSize = 20;
+		const fontSize = 6;
 
-		const scoreText = this.scene.add.text(0, 0, '0', {
-			fontSize: `${fontSize}px`,
-			fill: '#fff',
-		});
+		const scoreText = this.scene.add
+			.text(-17, -12, '0', {
+				fontSize: `${fontSize}px`,
+				fill: '#fff',
+				fontFamily: 'NHU',
+			})
+			.setStroke('#000000', 5);
 
-		const scoreImage = this.scene.add
-			.image(scoreText.width + 5, 0, 'battery')
-			.setOrigin(0, 0.3)
-			.setScale(1.5);
+		const scoreImage = this.scene.add.image(25, 0, 'battery').setOrigin(0, 0.3).setScale(1.5);
 
 		const scoreBoard = this.scene.add.container(0, 0, [scoreText, scoreImage]);
 		scoreBoard.setName('scoreBoard');
@@ -44,6 +44,5 @@ export default class Hud extends Phaser.GameObjects.Container {
 	updateScoreBoard(score) {
 		const [scoreText, scoreImage] = this.getByName('scoreBoard').list;
 		scoreText.setText(score);
-		scoreImage.setX(scoreText.width + 5);
 	}
 }

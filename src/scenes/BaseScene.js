@@ -33,9 +33,11 @@ class BaseScene extends Phaser.Scene {
 			];
 			menuItem.textGO = this.add
 				.text(...menuPosition, menuItem.text, {
-					fontSize: '45px',
+					fontFamily: 'NHU',
+					fontSize: '10px',
 					fill: '#ffffff',
 				})
+				.setStroke('#1d1d1b', 6)
 				.setOrigin(0.5, 1);
 
 			lastMenuPositionOffset += 50;
