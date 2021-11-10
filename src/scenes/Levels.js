@@ -12,7 +12,7 @@ class LevelScene extends BaseScene {
 		const levels = this.registry.get('unlocked-levels');
 
 		for (let i = 1; i <= levels; i++) {
-			this.menu.push({ scene: 'PlayScene', text: `Level ${i}`, level: i });
+			this.menu.push({ scene: 'PlayScene', text: `LEVEL ${i}`, level: i });
 		}
 
 		this.createMenu(this.menu, this.setupMenuEvents.bind(this));
@@ -24,7 +24,7 @@ class LevelScene extends BaseScene {
 		textGO.setInteractive();
 
 		textGO.on('pointerover', () => {
-			textGO.setStyle({ fill: '#ff003b' });
+			textGO.setStyle({ fill: '#a1ffa5' });
 		});
 		textGO.on('pointerout', () => {
 			textGO.setStyle({ fill: '#ffffff' });

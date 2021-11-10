@@ -7,7 +7,7 @@ class Preload extends Phaser.Scene {
 
 	preload() {
 		this.load.tilemapTiledJSON('level-1', 'assets/v2/lv_1.json');
-		this.load.tilemapTiledJSON('level-2', 'assets/crystal_world_map_level_2.json');
+		this.load.tilemapTiledJSON('level-2', 'assets/v2/lv_2.json');
 
 		this.load.image('tiles-1', 'assets/v2/nhu_tileset.png');
 
