@@ -40,11 +40,13 @@ class Healthbar {
 
 		const healthWidth = Math.floor(this.health * this.pixelPerHealth);
 
-		this.bar.fillStyle(healthWidth <= this.size.width / 3 ? 0xff0000 : 0x00ff00);
+		this.bar.fillStyle(healthWidth <= this.size.width / 3 ? 0xa1ffa5 : 0xa1ffa5);
 
 		if (healthWidth > 0) {
 			this.bar.fillRect(x + margin, y + margin, healthWidth - margin, height - margin);
 		}
+
+		this.bar.setDepth(10);
 
 		return this.bar.setScrollFactor(0, 0).setScale(scaleFactor);
 	}

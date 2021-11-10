@@ -5,8 +5,9 @@ class CreditsScene extends BaseScene {
 		super('CreditsScene', { ...config, canGoBack: true });
 
 		this.menu = [
-			{ scene: null, text: 'Thank you for playing!' },
-			{ scene: null, text: 'Made with <3 by @giorgioperri' },
+			{ scene: null, text: 'Thank     you     for     playing     this     demo'.toUpperCase() },
+			{ scene: null, text: 'Made     with     Tons     of     fun'.toUpperCase() },
+			{ scene: null, text: 'by     Giorgio     Perri'.toUpperCase() },
 		];
 	}
 

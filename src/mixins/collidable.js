@@ -30,22 +30,18 @@ export default {
 		const line = new Phaser.Geom.Line();
 		let hasHit = false;
 
-		switch (body.facing) {
-			case Phaser.Physics.Arcade.FACING_RIGHT: {
-				line.x1 = x + width;
-				line.y1 = y + halfHeight;
-				line.x2 = line.x1;
-				line.y2 = line.y1 + raylength;
-				break;
-			}
-			case Phaser.Physics.Arcade.FACING_LEFT: {
-				line.x1 = x;
-				line.y1 = y + halfHeight;
-				line.x2 = line.x1;
-				line.y2 = line.y1 + raylength;
-				break;
-			}
+		if (body.velocity.x > 0) {
+			line.x1 = x + width;
+			line.y1 = y + halfHeight;
+			line.x2 = line.x1;
+			line.y2 = line.y1 + raylength;
+		} else {
+			line.x1 = x;
+			line.y1 = y + halfHeight;
+			line.x2 = line.x1;
+			line.y2 = line.y1 + raylength;
 		}
+
 		const hits = layer.getTilesWithinShape(line);
 
 		if (hits.length > 0) {

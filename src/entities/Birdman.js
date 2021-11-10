@@ -22,6 +22,7 @@ class Birdman extends Enemy {
 		if (this.isPlayingAnimation('birdman-damaged')) {
 			return;
 		}
+
 		this.play('birdman-walk', true);
 	}
 
