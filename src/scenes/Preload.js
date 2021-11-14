@@ -33,6 +33,8 @@ class Preload extends Phaser.Scene {
 		this.load.image('fireball-2', 'assets/weapons/improved_fireball_002.png');
 		this.load.image('fireball-3', 'assets/weapons/improved_fireball_003.png');
 
+		this.load.image('key', 'assets/v2/nhu_key.png');
+
 		this.load.spritesheet('battery', 'assets/v2/battery.png', {
 			frameWidth: 13,
 			frameHeight: 24,

@@ -3,6 +3,7 @@ import Player from '../entities/Player';
 import Enemies from '../groups/Enemies';
 import initAnims from '../anims';
 import Collectibles from '../groups/Collectibles';
+import Keys from '../groups/Keys';
 import Hud from '../hud';
 import EventEmitter from '../events/Emitter';
 import { setOrigin } from 'phaser/src/gameobjects/components/Origin';
@@ -29,10 +30,9 @@ class Play extends Phaser.Scene {
 		const player = this.createPlayer(playerZones.start);
 		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
 		const collectibles = this.createCollectables(layers.collectibles);
+		const key = this.createKey(layers.key);
 
 		this.createBG();
-
-		//this.createForegroundDressing(map);
 
 		this.createEnemyColliders(enemies, {
 			colliders: {
@@ -44,8 +44,10 @@ class Play extends Phaser.Scene {
 		this.createPlayerColliders(player, {
 			colliders: {
 				platformsColliders: layers.colliders,
+				obstacleCollider: layers.obstacleCollider,
 				projectiles: enemies.getProjectiles(),
 				collectibles,
+				key,
 				traps: layers.traps,
 				meleeWeapons: enemies.getMeleeWeapons(),
 			},
@@ -64,20 +66,16 @@ class Play extends Phaser.Scene {
 
 	playBGMusic() {
 		if (this.sound.get('theme')) return;
-		//this.sound.add('theme', { loop: true, volume: 0.1 }).play();
 	}
 
 	createMap() {
 		const map = this.make.tilemap({ key: `level-${this.getCurrentLevel()}` });
 		map.addTilesetImage('nhu_tileset', 'tiles-1');
-		// map.addTilesetImage('bg_spikes_tileset', 'tiles-bg');
 		return map;
 	}
 
 	createLayers(map) {
 		const tileset1 = map.getTileset('nhu_tileset');
-		// const tilesetBG = map.getTileset('bg_spikes_tileset');
-		// map.createLayer('BGcolor', tilesetBG);
 		const ropes = map.createLayer('Bg_Ropes', tileset1);
 		const traps = map.createLayer('Traps', tileset1);
 		const pipes = map.createLayer('Bg_Pipes', tileset1);
@@ -90,7 +88,13 @@ class Play extends Phaser.Scene {
 		const platforms = map.createLayer('Platforms', tileset1);
 		const collectibles = map.getObjectLayer('Collectibles');
 
+		const obstacleSprite = map.createLayer('ObstacleSprite', tileset1);
+		const obstacleCollider = map.createLayer('ObstacleCollider', tileset1);
+
+		const key = map.getObjectLayer('Key');
+
 		colliders.setCollisionByProperty({ collides: true });
+		obstacleCollider.setCollisionByProperty({ collides: true });
 		traps.setCollisionByExclusion(-1);
 
 		return {
@@ -105,6 +109,9 @@ class Play extends Phaser.Scene {
 			platforms,
 			traps,
 			collectibles,
+			obstacleCollider,
+			obstacleSprite,
+			key,
 		};
 	}
 
@@ -154,6 +161,14 @@ class Play extends Phaser.Scene {
 		return collectibles;
 	}
 
+	createKey(keyLayer) {
+		const key = new Keys(this).setDepth(3);
+
+		key.addFromLayer(keyLayer);
+
+		return key;
+	}
+
 	createForegroundDressing(map) {
 		const tileset = map.getTileset('main_lev_build_1');
 		map.createLayer('Dressing', tileset);
@@ -191,6 +206,10 @@ class Play extends Phaser.Scene {
 		this.collectSound.play();
 	}
 
+	onKeyPickedUp() {
+		console.log('key was Picked up');
+	}
+
 	createEnemyColliders(enemies, { colliders }) {
 		enemies
 			.addCollider(colliders.platformsColliders)
@@ -202,8 +221,10 @@ class Play extends Phaser.Scene {
 	createPlayerColliders(player, { colliders }) {
 		player
 			.addCollider(colliders.platformsColliders)
+			.addCollider(colliders.obstacleCollider)
 			.addCollider(colliders.projectiles, this.onHit)
 			.addOverlap(colliders.collectibles, this.onCollect, this)
+			.addOverlap(colliders.key, this.onKeyPickedUp, this)
 			.addCollider(colliders.traps, this.onHit)
 			.addOverlap(colliders.meleeWeapons, this.onHit);
 	}

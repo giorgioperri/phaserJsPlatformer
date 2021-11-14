@@ -11,6 +11,7 @@ export default class Collectibles extends Phaser.Physics.Arcade.StaticGroup {
 	}
 
 	mapProperties(propertiesList) {
+		console.log(propertiesList);
 		if (!propertiesList || propertiesList.length === 0) {
 			return {};
 		}
