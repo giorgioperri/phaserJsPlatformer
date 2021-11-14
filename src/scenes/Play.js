@@ -30,7 +30,7 @@ class Play extends Phaser.Scene {
 		const player = this.createPlayer(playerZones.start);
 		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
 		const collectibles = this.createCollectables(layers.collectibles);
-		const key = this.createKey(layers.key);
+		const key = layers.key != null ? this.createKey(layers.key) : null;
 
 		this.createBG();
 
@@ -88,13 +88,13 @@ class Play extends Phaser.Scene {
 		const platforms = map.createLayer('Platforms', tileset1);
 		const collectibles = map.getObjectLayer('Collectibles');
 
-		const obstacleSprite = map.createLayer('ObstacleSprite', tileset1);
-		const obstacleCollider = map.createLayer('ObstacleCollider', tileset1);
+		const obstacleSprite = map.createLayer('ObstacleSprite', tileset1) || null;
+		const obstacleCollider = map.createLayer('ObstacleCollider', tileset1) || null;
 
-		const key = map.getObjectLayer('Key');
+		const key = map.getObjectLayer('Key') || null;
 
 		colliders.setCollisionByProperty({ collides: true });
-		obstacleCollider.setCollisionByProperty({ collides: true });
+		obstacleCollider && obstacleCollider.setCollisionByProperty({ collides: true });
 		traps.setCollisionByExclusion(-1);
 
 		return {
