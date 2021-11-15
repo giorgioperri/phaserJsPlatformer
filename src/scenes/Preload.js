@@ -125,7 +125,7 @@ class Preload extends Phaser.Scene {
 		this.registry.set('level', 1);
 		this.registry.set('unlocked-levels', 1);
 
-		this.scene.start('CreditsScene');
+		this.scene.start('MenuScene');
 	}
 }
 
