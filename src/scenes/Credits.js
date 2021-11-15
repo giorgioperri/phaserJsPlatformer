@@ -14,6 +14,7 @@ class CreditsScene extends BaseScene {
 	create() {
 		super.create();
 		this.createMenu(this.menu, () => {});
+		this.add.image(this.config.width / 2, this.config.height / 3, 'logo').setScale(0.6);
 	}
 }
 

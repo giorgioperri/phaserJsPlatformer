@@ -215,7 +215,6 @@ class Play extends Phaser.Scene {
 		this.map
 			.getLayer('ObstacleCollider')
 			.tilemapLayer.setCollisionByProperty({ collides: true }, false);
-		console.log(this.scene);
 
 		this.map.getLayer('ObstacleSprite').tilemapLayer.destroy();
 	}
