@@ -12,6 +12,9 @@ class Play extends Phaser.Scene {
 	constructor(config) {
 		super('PlayScene');
 		this.config = config;
+		this.layers = null;
+		this.map = null;
+		this.player = null;
 	}
 
 	create({ gameStatus }) {
@@ -21,41 +24,41 @@ class Play extends Phaser.Scene {
 		this.playBGMusic();
 		this.collectSound = this.sound.add('collectiblePickup', { volume: 0.2 });
 
-		const map = this.createMap();
+		this.map = this.createMap();
 
 		initAnims(this.anims);
 
-		const layers = this.createLayers(map);
-		const playerZones = this.getPlayerZones(layers.playerZones);
-		const player = this.createPlayer(playerZones.start);
-		const enemies = this.createEnemies(layers.enemySpawns, layers.colliders);
-		const collectibles = this.createCollectables(layers.collectibles);
-		const key = layers.key != null ? this.createKey(layers.key) : null;
+		this.layers = this.createLayers(this.map);
+		const playerZones = this.getPlayerZones(this.layers.playerZones);
+		this.player = this.createPlayer(playerZones.start);
+		const enemies = this.createEnemies(this.layers.enemySpawns, this.layers.colliders);
+		const collectibles = this.createCollectables(this.layers.collectibles);
+		const key = this.layers.key != null ? this.createKey(this.layers.key) : null;
 
 		this.createBG();
 
 		this.createEnemyColliders(enemies, {
 			colliders: {
-				platformsColliders: layers.colliders,
-				player,
+				platformsColliders: this.layers.colliders,
+				player: this.player,
 			},
 		});
 
-		this.createPlayerColliders(player, {
+		this.createPlayerColliders(this.player, {
 			colliders: {
-				platformsColliders: layers.colliders,
-				obstacleCollider: layers.obstacleCollider,
+				platformsColliders: this.layers.colliders,
+				obstacleCollider: this.layers.obstacleCollider,
 				projectiles: enemies.getProjectiles(),
 				collectibles,
 				key,
-				traps: layers.traps,
+				traps: this.layers.traps,
 				meleeWeapons: enemies.getMeleeWeapons(),
 			},
 		});
 
 		this.createBackButton();
-		this.createEndOfLevel(playerZones.end, player);
-		this.setupFollowupCameraOn(player);
+		this.createEndOfLevel(playerZones.end, this.player);
+		this.setupFollowupCameraOn(this.player);
 
 		if (gameStatus === 'PLAYER_LOST') {
 			return;
@@ -94,7 +97,7 @@ class Play extends Phaser.Scene {
 		const key = map.getObjectLayer('Key') || null;
 
 		colliders.setCollisionByProperty({ collides: true });
-		obstacleCollider && obstacleCollider.setCollisionByProperty({ collides: true });
+		obstacleCollider && obstacleCollider.setCollisionByProperty({ collides: true }, true);
 		traps.setCollisionByExclusion(-1);
 
 		return {
@@ -206,8 +209,15 @@ class Play extends Phaser.Scene {
 		this.collectSound.play();
 	}
 
-	onKeyPickedUp() {
-		console.log('key was Picked up');
+	onKeyPickedUp(entity, collectable) {
+		collectable.disableBody(true, true);
+
+		this.map
+			.getLayer('ObstacleCollider')
+			.tilemapLayer.setCollisionByProperty({ collides: true }, false);
+		console.log(this.scene);
+
+		this.map.getLayer('ObstacleSprite').tilemapLayer.destroy();
 	}
 
 	createEnemyColliders(enemies, { colliders }) {
@@ -282,11 +292,9 @@ class Play extends Phaser.Scene {
 	}
 
 	update() {
-		//this.spikesImage.tilePositionX = this.cameras.main.scrollX * 0.3;
 		this.bg1.tilePositionX = this.cameras.main.scrollX * 0.05;
 		this.bg2.tilePositionX = this.cameras.main.scrollX * 0.2;
 		this.bg3.tilePositionX = this.cameras.main.scrollX * 0.3;
-		//this.bg4.tilePositionX = this.cameras.main.scrollX * 0.05;
 	}
 }
 
