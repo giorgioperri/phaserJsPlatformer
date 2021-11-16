@@ -17,11 +17,11 @@ class Preload extends Phaser.Scene {
 
 		this.load.image('sky', 'assets/sky_play.png');
 		this.load.image('bg-spikes-dark', 'assets/bg_spikes_dark.png');
-		this.load.image('gameplay-bg-0', '../../assets/v2/bg/bg_layer 1.png');
-		this.load.image('gameplay-bg-1', '../../assets/v2/bg/bg_layer 2.png');
-		this.load.image('gameplay-bg-2', '../../assets/v2/bg/bg_layer 3.png');
-		this.load.image('gameplay-bg-3', '../../assets/v2/bg/bg_layer 4.png');
-		this.load.image('gameplay-bg-4', '../../assets/v2/bg/bg_layer 5.png');
+		this.load.image('gameplay-bg-0', 'assets/v2/bg/bg_layer 1.png');
+		this.load.image('gameplay-bg-1', 'assets/v2/bg/bg_layer 2.png');
+		this.load.image('gameplay-bg-2', 'assets/v2/bg/bg_layer 3.png');
+		this.load.image('gameplay-bg-3', 'assets/v2/bg/bg_layer 4.png');
+		this.load.image('gameplay-bg-4', 'assets/v2/bg/bg_layer 5.png');
 
 		this.load.image('menu-bg', 'assets/background01.png');
 		this.load.image('back', 'assets/back.png');
@@ -55,12 +55,12 @@ class Preload extends Phaser.Scene {
 			frameHeight: 29,
 		});
 
-		this.load.spritesheet('nhuWalk', '../../assets/v2/Nhu_walk.png', {
+		this.load.spritesheet('nhuWalk', 'assets/v2/Nhu_walk.png', {
 			frameWidth: 32,
 			frameHeight: 29,
 		});
 
-		this.load.spritesheet('greenProjectile', '../../assets/v2/nhu_projectile.png', {
+		this.load.spritesheet('greenProjectile', 'assets/v2/nhu_projectile.png', {
 			frameWidth: 16,
 			frameHeight: 16,
 			spacing: 4,
@@ -72,17 +72,17 @@ class Preload extends Phaser.Scene {
 			spacing: 32,
 		});
 
-		this.load.spritesheet('birdman', '../../assets/v2/bad_guy_1_walk.png', {
+		this.load.spritesheet('birdman', 'assets/v2/bad_guy_1_walk.png', {
 			frameWidth: 15,
 			frameHeight: 32,
 		});
 
-		this.load.spritesheet('gunner', '../../assets/v2/bad_guy_2_walk.png', {
+		this.load.spritesheet('gunner', 'assets/v2/bad_guy_2_walk.png', {
 			frameWidth: 24,
 			frameHeight: 25,
 		});
 
-		this.load.spritesheet('blaster', '../../assets/v2/bad_guy_2_shoot.png', {
+		this.load.spritesheet('blaster', 'assets/v2/bad_guy_2_shoot.png', {
 			frameWidth: 57,
 			frameHeight: 25,
 		});
@@ -92,7 +92,7 @@ class Preload extends Phaser.Scene {
 			frameHeight: 32,
 		});
 
-		this.load.spritesheet('swordDefault', '../../assets/v2/Nhu_attack_close.png', {
+		this.load.spritesheet('swordDefault', 'assets/v2/Nhu_attack_close.png', {
 			frameWidth: 76,
 			frameHeight: 31,
 		});
