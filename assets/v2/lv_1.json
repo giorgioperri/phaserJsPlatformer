@@ -279,127 +279,76 @@
          "name":"TutorialText",
          "objects":[
                 {
-                 "height":32,
-                 "id":64,
+                 "gid":1217,
+                 "height":33.7758433079434,
+                 "id":72,
                  "name":"",
                  "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":4,
-                     "text":"MOVE",
-                     "wrap":true
-                    },
                  "type":"",
                  "visible":true,
                  "width":80,
-                 "x":96,
-                 "y":464
+                 "x":720,
+                 "y":528
                 }, 
                 {
-                 "height":32,
-                 "id":66,
+                 "gid":1216,
+                 "height":12.6640522875817,
+                 "id":73,
                  "name":"",
                  "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":4,
-                     "text":"JUMP",
-                     "wrap":true
-                    },
                  "type":"",
                  "visible":true,
-                 "width":80,
-                 "x":288,
-                 "y":432
-                }, 
-                {
-                 "height":48,
-                 "id":67,
-                 "name":"",
-                 "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":4,
-                     "text":"DOUBLE JUMP",
-                     "wrap":true
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":688,
-                 "y":480
-                }, 
-                {
-                 "height":16,
-                 "id":68,
-                 "name":"",
-                 "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":3,
-                     "text":"TWICE",
-                     "valign":"center",
-                     "wrap":true
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":768,
-                 "y":544
-                }, 
-                {
-                 "height":16,
-                 "id":70,
-                 "name":"",
-                 "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":3,
-                     "text":"SLASH",
-                     "valign":"center",
-                     "wrap":true
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":64,
+                 "width":60.7398119122257,
                  "x":928,
-                 "y":576
+                 "y":590.332026143791
                 }, 
                 {
-                 "height":16,
-                 "id":71,
+                 "gid":1215,
+                 "height":12.9254901960784,
+                 "id":74,
                  "name":"",
                  "rotation":0,
-                 "text":
-                    {
-                     "color":"#ffffff",
-                     "fontfamily":"NHU",
-                     "halign":"center",
-                     "pixelsize":3,
-                     "text":"SHOOT",
-                     "valign":"center",
-                     "wrap":true
-                    },
                  "type":"",
                  "visible":true,
                  "width":64,
                  "x":1216,
-                 "y":576
+                 "y":590.38431372549
+                }, 
+                {
+                 "gid":1214,
+                 "height":11.4455445544554,
+                 "id":75,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":304,
+                 "y":445.722772277228
+                }, 
+                {
+                 "gid":1213,
+                 "height":12.4909983633388,
+                 "id":76,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":112,
+                 "y":480
+                }, 
+                {
+                 "gid":1218,
+                 "height":12.5894736842105,
+                 "id":77,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":768,
+                 "y":558.294736842105
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -500,7 +449,7 @@
          "y":0
         }],
  "nextlayerid":35,
- "nextobjectid":72,
+ "nextobjectid":78,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.1",
@@ -676,6 +625,144 @@
          "tileheight":24,
          "tilewidth":13,
          "transparentcolor":"#ff00ff"
+        }, 
+        {
+         "columns":0,
+         "firstgid":1213,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 2",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":318,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 2.png",
+                 "imageheight":318,
+                 "imagewidth":1222
+                }],
+         "tilewidth":1222
+        }, 
+        {
+         "columns":0,
+         "firstgid":1214,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 3",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":289,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 3.png",
+                 "imageheight":289,
+                 "imagewidth":1212
+                }],
+         "tilewidth":1212
+        }, 
+        {
+         "columns":0,
+         "firstgid":1215,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 4",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":309,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 4.png",
+                 "imageheight":309,
+                 "imagewidth":1530
+                }],
+         "tilewidth":1530
+        }, 
+        {
+         "columns":0,
+         "firstgid":1216,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 5",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":319,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 5.png",
+                 "imageheight":319,
+                 "imagewidth":1530
+                }],
+         "tilewidth":1530
+        }, 
+        {
+         "columns":0,
+         "firstgid":1217,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 6",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":776,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 6.png",
+                 "imageheight":776,
+                 "imagewidth":1838
+                }],
+         "tilewidth":1838
+        }, 
+        {
+         "columns":0,
+         "firstgid":1218,
+         "grid":
+            {
+             "height":1,
+             "orientation":"orthogonal",
+             "width":1
+            },
+         "margin":0,
+         "name":"Risorsa 7",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":299,
+         "tiles":[
+                {
+                 "id":0,
+                 "image":"TEXTS\/Risorsa 7.png",
+                 "imageheight":299,
+                 "imagewidth":1520
+                }],
+         "tilewidth":1520
         }],
  "tilewidth":16,
  "type":"map",

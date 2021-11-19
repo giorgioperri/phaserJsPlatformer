@@ -24,6 +24,13 @@ class Preload extends Phaser.Scene {
 		this.load.image('gameplay-bg-3', 'assets/v2/bg/bg_layer 4.png');
 		this.load.image('gameplay-bg-4', 'assets/v2/bg/bg_layer 5.png');
 
+		this.load.image('moveText', 'assets/v2/TEXTS/move.png');
+		this.load.image('jumpText', 'assets/v2/TEXTS/jump.png');
+		this.load.image('slashText', 'assets/v2/TEXTS/slash.png');
+		this.load.image('shootText', 'assets/v2/TEXTS/shoot.png');
+		this.load.image('doubleJumpText', 'assets/v2/TEXTS/doubleJump.png');
+		this.load.image('twiceText', 'assets/v2/TEXTS/twice.png');
+
 		this.load.image('menu-bg', 'assets/background01.png');
 		this.load.image('back', 'assets/back.png');
 

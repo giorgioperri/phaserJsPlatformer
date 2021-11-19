@@ -35,6 +35,8 @@ class Play extends Phaser.Scene {
 		const collectibles = this.createCollectables(this.layers.collectibles);
 		const key = this.layers.key != null ? this.createKey(this.layers.key) : null;
 
+		this.createTutorialTexts();
+
 		this.createBG();
 
 		this.createEnemyColliders(enemies, {
@@ -174,6 +176,15 @@ class Play extends Phaser.Scene {
 		key.addFromLayer(keyLayer);
 
 		return key;
+	}
+
+	createTutorialTexts() {
+		this.add.image(137, 480, 'moveText').setScale(0.05).setDepth(-1);
+		this.add.image(328, 450, 'jumpText').setScale(0.05).setDepth(-1);
+		this.add.image(752, 510, 'doubleJumpText').setScale(0.05).setDepth(3);
+		this.add.image(800, 551, 'twiceText').setScale(0.04).setDepth(3);
+		this.add.image(955, 584, 'slashText').setScale(0.05).setDepth(3);
+		this.add.image(1245, 584, 'shootText').setScale(0.05).setDepth(3);
 	}
 
 	createForegroundDressing(map) {
