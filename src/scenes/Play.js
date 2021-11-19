@@ -73,12 +73,13 @@ class Play extends Phaser.Scene {
 
 	createMap() {
 		const map = this.make.tilemap({ key: `level-${this.getCurrentLevel()}` });
-		map.addTilesetImage('nhu_tileset', 'tiles-1');
+		map.addTilesetImage('nhu_tileset', 'tiles-1', 16, 16);
 		return map;
 	}
 
 	createLayers(map) {
 		const tileset1 = map.getTileset('nhu_tileset');
+
 		const ropes = map.createLayer('Bg_Ropes', tileset1);
 		const traps = map.createLayer('Traps', tileset1);
 		const pipes = map.createLayer('Bg_Pipes', tileset1);
@@ -90,6 +91,8 @@ class Play extends Phaser.Scene {
 		const enemySpawns = map.getObjectLayer('EnemySpawnPoints');
 		const platforms = map.createLayer('Platforms', tileset1);
 		const collectibles = map.getObjectLayer('Collectibles');
+
+		const tutorialTiles = map.createLayer('TutorialTiles', tileset1) || null;
 
 		const obstacleSprite = map.createLayer('ObstacleSprite', tileset1) || null;
 		const obstacleCollider = map.createLayer('ObstacleCollider', tileset1) || null;
@@ -115,6 +118,7 @@ class Play extends Phaser.Scene {
 			obstacleCollider,
 			obstacleSprite,
 			key,
+			tutorialTiles,
 		};
 	}
 
