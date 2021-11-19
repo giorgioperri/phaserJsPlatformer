@@ -19,7 +19,7 @@ class Play extends Phaser.Scene {
 
 	create({ gameStatus }) {
 		this.score = 0;
-		this.hud = new Hud(this, 0, 0).setDepth(9);
+		this.hud = new Hud(this, 0, 0).setDepth(900);
 
 		this.playBGMusic();
 		this.collectSound = this.sound.add('collectiblePickup', { volume: 0.2 });
@@ -276,6 +276,7 @@ class Play extends Phaser.Scene {
 		this.add
 			.image(this.config.rightBottomCorner.x, this.config.rightBottomCorner.y, 'back')
 			.setOrigin(1)
+			.setDepth(900)
 			.setScrollFactor(0)
 			.setScale(1.5)
 			.setInteractive()
