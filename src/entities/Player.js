@@ -38,10 +38,10 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 
 		//sounds
-		this.jumpSound = this.scene.sound.add('jump', { volume: 0.2 });
-		this.projectileSound = this.scene.sound.add('projectile-launch', { volume: 0.2 });
-		this.stepSound = this.scene.sound.add('step', { volume: 0.2 });
-		this.swipeSound = this.scene.sound.add('swipe', { volume: 0.2 });
+		this.jumpSound = this.scene.sound.add('jump', { volume: 3 });
+		this.projectileSound = this.scene.sound.add('projectile-launch', { volume: 1 });
+		this.stepSound = this.scene.sound.add('step', { volume: 0.25, rate: 2 });
+		this.swipeSound = this.scene.sound.add('swipe', { volume: 0.3, rate: 2.5 });
 
 		this.projectiles = new Projectiles(this.scene, 'iceball');
 		this.meleeWeapon = new MeleeWeapon(this.scene, 0, 0, 'swordDefault');

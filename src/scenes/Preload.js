@@ -105,12 +105,12 @@ class Preload extends Phaser.Scene {
 			frameHeight: 31,
 		});
 
-		this.load.audio('theme', 'assets/music/theme_music.wav');
-		this.load.audio('projectile-launch', 'assets/music/projectile_launch.wav');
-		this.load.audio('step', 'assets/music/step_mud.wav');
-		this.load.audio('jump', 'assets/music/jump.wav');
-		this.load.audio('swipe', 'assets/music/swipe.wav');
-		this.load.audio('collectiblePickup', 'assets/music/coin_pickup.wav');
+		this.load.audio('theme', 'assets/music/new/theme.mp3');
+		this.load.audio('projectile-launch', 'assets/music/new/projectile.wav');
+		this.load.audio('step', 'assets/music/new/step.wav');
+		this.load.audio('jump', 'assets/music/new/jump.wav');
+		this.load.audio('swipe', 'assets/music/new/swoosh.wav');
+		this.load.audio('collectiblePickup', 'assets/music/new/pickup.wav');
 
 		const prod = process.env.FB_ENV || process.env.NODE_ENV === 'production';
 

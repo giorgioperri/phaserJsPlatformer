@@ -71,6 +71,7 @@ class Play extends Phaser.Scene {
 
 	playBGMusic() {
 		if (this.sound.get('theme')) return;
+		this.sound.add('theme', { loop: true, volume: 1 }).play();
 	}
 
 	createMap() {
@@ -179,6 +180,8 @@ class Play extends Phaser.Scene {
 	}
 
 	createTutorialTexts() {
+		if (this.getCurrentLevel() != 1) return;
+
 		this.add.image(137, 480, 'moveText').setScale(0.05).setDepth(-1);
 		this.add.image(328, 450, 'jumpText').setScale(0.05).setDepth(-1);
 		this.add.image(752, 510, 'doubleJumpText').setScale(0.05).setDepth(3);

@@ -30,7 +30,7 @@ const SHARED_CONFIG = {
 		x: WIDTH / ZOOM_FACTOR + (WIDTH - WIDTH / ZOOM_FACTOR) / 2,
 		y: HEIGHT / ZOOM_FACTOR + (HEIGHT - HEIGHT / ZOOM_FACTOR) / 2,
 	},
-	lastLevel: 3,
+	lastLevel: 4,
 };
 
 const Scenes = [PreloadScene, MenuScene, LevelScene, PlayScene, CreditsScene];
