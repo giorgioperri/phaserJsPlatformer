@@ -41,7 +41,7 @@ const config = {
 	type: Phaser.CANVAS,
 	...SHARED_CONFIG,
 	pixelArt: true,
-	antialias: false,
+	antialias: true,
 	physics: {
 		default: 'arcade',
 		arcade: {
